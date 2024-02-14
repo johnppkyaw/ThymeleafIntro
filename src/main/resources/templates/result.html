@@ -12,16 +12,44 @@
     <div class="row">
         <div class="col-md-8 mx-auto">
 <h2>Result</h2>
-<div class="my-3">
-    <p><strong>ID:</strong> <span th:text="${project.id}"></span></p>
-    <p><strong>Title:</strong> <span th:text="${project.title}"></span></p>
-    <p><strong>Type:</strong> <span th:text="${project.type}"></span></p>
-    <p><strong>Color:</strong> <span th:text="${project.color}"></span></p>
-    <p><strong>Description:</strong> <span th:text="${project.description}"></span></p>
-    <p><strong>Days:</strong> <span th:text="${project.days}"></span></p>
-    <p><strong>Price:</strong> <span th:text="${project.price}"></span></p>
-    <p><strong>Featured:</strong> <span th:text="${project.featured} ? 'Yes' : 'No'"></span></p>
-    <p><strong>Launch Date:</strong> <span th:text="${project.launchDate}"></span></p>
+<div class="my-3 table-responsive-lg">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Title</th>
+                <th scope="col">Type</th>
+                <th scope="col">Color</th>
+                <th scope="col">Description</th>
+                <th scope="col">Days</th>
+                <th scope="col">Price</th>
+                <th scope="col">Featured</th>
+                <th scope="col">LaunchDate</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td th:text="${project.id}"></td>
+                <td th:text="${project.title}"></td>
+                <td th:text="${project.type}"></td>
+                <td th:text="${project.color}"></td>
+                <td th:text="${project.description}"></td>
+                <td th:text="${project.days}"></td>
+                <td th:text="${project.price}"></td>
+                <td th:text="${project.featured} ? 'Yes' : 'No'"></td>
+                <td style="white-space:nowrap;" th:text="${project.launchDate}"></td>
+            </tr>
+        </tbody>
+    </table>
+<!--    <p><strong>ID:</strong> <span th:text="${project.id}"></span></p>-->
+<!--    <p><strong>Title:</strong> <span th:text="${project.title}"></span></p>-->
+<!--    <p><strong>Type:</strong> <span th:text="${project.type}"></span></p>-->
+<!--    <p><strong>Color:</strong> <span th:text="${project.color}"></span></p>-->
+<!--    <p><strong>Description:</strong> <span th:text="${project.description}"></span></p>-->
+<!--    <p><strong>Days:</strong> <span th:text="${project.days}"></span></p>-->
+<!--    <p><strong>Price:</strong> <span th:text="${project.price}"></span></p>-->
+<!--    <p><strong>Featured:</strong> <span th:text="${project.featured} ? 'Yes' : 'No'"></span></p>-->
+<!--    <p><strong>Launch Date:</strong> <span th:text="${project.launchDate}"></span></p>-->
 </div>
 <a th:href="@{/create-project}">Add new project</a>
         </div>
