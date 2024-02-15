@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Create New Project</title>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+</head>
+<body>
+
+<div class="container my-3">
+    <div class="row">
+        <div class="col-md-8 mx-auto">
+            <h2>Create New Project</h2>
+            <form>
+                <div class="form-row">
+                    <div class="col-md-6 form-group">
+
+                        <label>Project ID</label>
+                        <input type="number" class="form-control" id="id">
+                    </div>
+                    <div class="col-md-6 form-group">
+                        <label>Title</label>
+                        <input type="text" class="form-control" id="title">
+                    </div>
+                    <div class="col-md-6 form-group">
+                        <label>Type</label>
+                        <select class="form-control" id="type">
+                            <option value="">Choose...</option>
+                            <option value="Design">Design</option>
+                            <option value="Engineering">Engineering</option>
+                            <option value="Marketing">Marketing</option>
+                            <option value="Finance">Finance</option>
+                        </select>
+                    </div>
+                    <div class="col-md-6 form-group">
+                        <label>Color</label>
+                        <input type="color" class="form-control" id="color">
+                    </div>
+                    <div class="col-md-6 form-group">
+                        <label>Estimated Price</label>
+                        <input type="number" step="any" class="form-control" id="price">
+                    </div>
+                    <div class="col-md-6 form-group">
+                        <label>Launch Date</label>
+                        <input type="datetime-local" class="form-control" id="launchDate">
+                    </div>
+                    <div class="col-md-6 form-group">
+                        <strong>Duration:</strong>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="days" id="option1" value="15">
+                            <label class="form-check-label" for="option1">15 Days</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="days" id="option2" value="30">
+                            <label class="form-check-label" for="option2">30 Days</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="days" id="option3" value="45">
+                            <label class="form-check-label" for="option3">45 Days</label>
+                        </div>
+                    </div>
+                    <div class="col-md-6 form-group">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="featured" value="yes">
+                            <label class="form-check-label" for="featured">
+                                Mark Featured
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Description</label>
+                    <textarea class="form-control" id="description" rows="3"></textarea>
+                </div>
+                <button type="button" id="save-project" class="btn btn-primary btn-block mt-3">Save Project</button>
+            </form>
+            <form th:action="@{/getProjectsJS}">
+                <button type="button" id="project-list" class="btn btn-primary btn-block mt-3">Project List</button>
+            </form>
+        </div>
+    </div>
+</div>
+<div id="message"></div>
+
+<script>
+    const saveProjectButton = document.getElementById("save-project");
+    const messageElement = document.getElementById("message");
+
+    saveProjectButton.addEventListener("click", (e) => {
+
+        const projectId = parseInt(document.getElementById("id").value);
+        const projectTitle = document.getElementById("title").value;
+        const projectType = document.getElementById("type").value;
+        const projectColor = document.getElementById("color").value;
+        const projectPrice = document.getElementById("price").value;
+        const projectLaunchDate = document.getElementById("launchDate").value;
+        const projectDays = document.querySelector('input[name="days"]:checked').value;
+        const projectFeatured = document.getElementById('featured').checked;
+        const projectDescription = document.getElementById("description").value;
+
+        console.log(projectId)
+        console.log(projectTitle)
+        console.log(projectType)
+        console.log(projectColor)
+        console.log(projectPrice)
+        console.log(projectLaunchDate)
+        console.log(projectDays)
+        console.log(projectFeatured)
+        console.log(projectDescription)
+
+        const project = {
+            id: projectId,
+            title: projectTitle,
+            type: projectType,
+            color: projectColor,
+            price: projectPrice,
+            launchDate: projectLaunchDate,
+            days: projectDays,
+            featured: projectFeatured,
+            description: projectDescription
+        };
+
+        fetch("/create-project", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(project)
+        })
+            .then(response => response.json())
+            .then(() => {
+                // Display success message
+                messageElement.textContent = "Project created successfully!";
+                // Optionally clear form or trigger other actions
+            })
+        .catch(error => {
+            if (error.message !== "Unexpected end of JSON input") {
+                // Handle other errors
+                messageElement.textContent = `Error creating product: ${error.message}`;
+            } else {
+                // Ignore false error and proceed
+                messageElement.textContent = "Product created successfully!";
+                // Clear message after 5 seconds
+                setTimeout(() => {
+                    messageElement.textContent = "";
+                }, 3000);
+            }
+        });
+    });
+</script>
+
+</body>
+</html>

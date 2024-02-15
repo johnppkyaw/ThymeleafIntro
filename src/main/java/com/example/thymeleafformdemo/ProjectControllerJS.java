@@ -5,19 +5,17 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
-public class ProductController {
+public class ProjectControllerJS {
     //moved from SimpleController.java
-    @GetMapping("/getproducts")
-    public String showForm2(){
-        System.out.println("Show the Form!!");
-        return("getprodBS");
+    @GetMapping("/getProjectsJS")
+    public String getProjectsJS(){
+        System.out.println("Getting resultJS page!!");
+        return("resultJS");
     }
     //moved from SimpleController.java
-    @GetMapping("/addproducts")
-    public String showForm3(){
+    @GetMapping("/createProjectJS")
+    public String addProjectJS(){
         System.out.println("Show create-product Form!!");
-        return("create-product");
+        return("create-projectJS");
     }
 }
-
-
