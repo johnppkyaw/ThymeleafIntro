@@ -15,6 +15,20 @@ import java.util.List;
 public class ProductController {
 
     private final List<Product> products = new ArrayList<>(); // Shared ArrayList
+
+    //moved from SimpleController.java
+    @GetMapping("/getproducts")
+    public String showForm2(){
+        System.out.println("Show the Form!!");
+        return("getprodBS");
+    }
+    //moved from SimpleController.java
+    @GetMapping("/addproducts")
+    public String showForm3(){
+        System.out.println("Show create-product Form!!");
+        return("create-product");
+    }
+
     @GetMapping("/products")
     public List<Product> getProducts() {
         //List<Product> products = new ArrayList<>();
