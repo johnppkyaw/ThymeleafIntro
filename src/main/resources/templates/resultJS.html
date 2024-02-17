@@ -100,11 +100,11 @@
           tableRow.appendChild(titleCell);
           tableRow.appendChild(typeCell);
           tableRow.appendChild(colorCell);
-          tableRow.appendChild(priceCell);
-          tableRow.appendChild(launchDateCell);
-          tableRow.appendChild(daysCell);
-          tableRow.appendChild(featuredCell);
           tableRow.appendChild(descriptionCell);
+          tableRow.appendChild(daysCell);
+          tableRow.appendChild(priceCell);
+          tableRow.appendChild(featuredCell);
+          tableRow.appendChild(launchDateCell);
 
           projectList.appendChild(tableRow);
       }
@@ -114,6 +114,5 @@
             .then(projects => displayProjects(projects))
             .catch(error => console.error(error));
 </script>
-
 </body>
 </html>
