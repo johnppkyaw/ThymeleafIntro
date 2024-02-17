@@ -29,6 +29,11 @@
         </thead>
         <tbody id="project-list"></tbody>
     </table>
+</div>
+<a th:href="@{/createProjectJS}">Add new project</a>
+        </div>
+    </div>
+</div>
 <!--    <p><strong>ID:</strong> <span th:text="${project.id}"></span></p>-->
 <!--    <p><strong>Title:</strong> <span th:text="${project.title}"></span></p>-->
 <!--    <p><strong>Type:</strong> <span th:text="${project.type}"></span></p>-->
@@ -38,15 +43,19 @@
 <!--    <p><strong>Price:</strong> <span th:text="${project.price}"></span></p>-->
 <!--    <p><strong>Featured:</strong> <span th:text="${project.featured} ? 'Yes' : 'No'"></span></p>-->
 <!--    <p><strong>Launch Date:</strong> <span th:text="${project.launchDate}"></span></p>-->
-</div>
-<a th:href="@{/createProjectJS}">Add new project</a>
-        </div>
-    </div>
-</div>
-
-<script>
-    function displayProjects(projects) {
-      const projectList = document.getElementById("project-list");
+<!--      <tbody>-->
+<!--            <tr th:each="project : ${projectList}">-->
+<!--                <td th:text="${project.id}"></td> -->
+<!--                <td th:text="${project.title}"></td> -->
+<!--                <td th:text="${project.type}"></td> -->
+<!--                <td th:text="${project.color}"></td> -->
+<!--                <td th:text="${project.description}"></td> -->
+<!--                <td th:text="${project.days}"></td> -->
+<!--                <td th:text="${project.price}"></td> -->
+<!--                <td th:text="${project.featured} ? 'Yes' : 'No'"></td> -->
+<!--                <td style="white-space:nowrap;" th:text="${project.launchDate}"></td> -->
+<!--            </tr> -->
+<!--        </tbody> -->
 
 <!--      const project = {-->
 <!--            id: projectId,-->
@@ -59,61 +68,47 @@
 <!--            featured: projectFeatured,-->
 <!--            description: projectDescription-->
 <!--        };-->
-
+<script>
+    function displayProjects(projects) {
+      const projectList = document.getElementById("project-list");
       for(let i = 0; i < projects.length; i++) {
-        const currProject = projects[i];
+          const currProject = projects[i];
 
-        const tableRow = document.createElement("tr");
+          const tableRow = document.createElement("tr");
 
-        const idCell = document.createElement("td");
-        const titleCell = document.createElement("td");
-        const typeCell = document.createElement("td");
-        const colorCell = document.createElement("td");
-        const priceCell = document.createElement("td");
-        const launchDateCell = document.createElement("td");
-        const daysCell = document.createElement("td");
-        const featuredCell = document.createElement("td");
-        const descriptionCell = document.createElement("td");
+          const idCell = document.createElement("td");
+          const titleCell = document.createElement("td");
+          const typeCell = document.createElement("td");
+          const colorCell = document.createElement("td");
+          const priceCell = document.createElement("td");
+          const launchDateCell = document.createElement("td");
+          const daysCell = document.createElement("td");
+          const featuredCell = document.createElement("td");
+          const descriptionCell = document.createElement("td");
 
-        idCell.innerText = currProject.id;
-        titleCell.innerText = currProject.title;
-        typeCell.innerText = currProject.type;
-        colorCell.innerText = currProject.color;
-        priceCell.innerText = currProject.price;
-        launchDateCell.innerText = currProject.launchDate;
-        daysCell.innerText = currProject.days;
-        featuredCell.innerText = currProject.featured;
-        descriptionCell.innerText = currProject.description;
+          idCell.innerText = currProject.id;
+          titleCell.innerText = currProject.title;
+          typeCell.innerText = currProject.type;
+          colorCell.innerText = currProject.color;
+          priceCell.innerText = currProject.price;
+          launchDateCell.innerText = currProject.launchDate;
+          daysCell.innerText = currProject.days;
+          featuredCell.innerText = currProject.featured;
+          descriptionCell.innerText = currProject.description;
 
-        tableRow.appendChild(idCell);
-        tableRow.appendChild(titleCell);
-        tableRow.appendChild(typeCell);
-        tableRow.appendChild(colorCell);
-        tableRow.appendChild(priceCell);
-        tableRow.appendChild(launchDateCell);
-        tableRow.appendChild(daysCell);
-        tableRow.appendChild(featuredCell);
-        tableRow.appendChild(descriptionCell);
+          tableRow.appendChild(idCell);
+          tableRow.appendChild(titleCell);
+          tableRow.appendChild(typeCell);
+          tableRow.appendChild(colorCell);
+          tableRow.appendChild(priceCell);
+          tableRow.appendChild(launchDateCell);
+          tableRow.appendChild(daysCell);
+          tableRow.appendChild(featuredCell);
+          tableRow.appendChild(descriptionCell);
 
-        projectList.appendChild(tableRow);
+          projectList.appendChild(tableRow);
       }
-
-<!--      <tbody>-->
-<!--            <tr th:each="project : ${projectList}">-->
-<!--                <td th:text="${project.id}"></td>-->
-<!--                <td th:text="${project.title}"></td>-->
-<!--                <td th:text="${project.type}"></td>-->
-<!--                <td th:text="${project.color}"></td>-->
-<!--                <td th:text="${project.description}"></td>-->
-<!--                <td th:text="${project.days}"></td>-->
-<!--                <td th:text="${project.price}"></td>-->
-<!--                <td th:text="${project.featured} ? 'Yes' : 'No'"></td>-->
-<!--                <td style="white-space:nowrap;" th:text="${project.launchDate}"></td>-->
-<!--            </tr>-->
-<!--        </tbody>-->
-
     }
-
     fetch("/projects")
             .then(response => response.json())
             .then(projects => displayProjects(projects))

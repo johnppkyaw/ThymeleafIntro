@@ -15,16 +15,15 @@
             <form>
                 <div class="form-row">
                     <div class="col-md-6 form-group">
-
-                        <label>Project ID</label>
+                        <label for="id">Project ID</label>
                         <input type="number" class="form-control" id="id">
                     </div>
                     <div class="col-md-6 form-group">
-                        <label>Title</label>
+                        <label for="title">Title</label>
                         <input type="text" class="form-control" id="title">
                     </div>
                     <div class="col-md-6 form-group">
-                        <label>Type</label>
+                        <label for="type">Type</label>
                         <select class="form-control" id="type">
                             <option value="">Choose...</option>
                             <option value="Design">Design</option>
@@ -34,15 +33,15 @@
                         </select>
                     </div>
                     <div class="col-md-6 form-group">
-                        <label>Color</label>
+                        <label for="color">Color</label>
                         <input type="color" class="form-control" id="color">
                     </div>
                     <div class="col-md-6 form-group">
-                        <label>Estimated Price</label>
+                        <label for="price">Estimated Price</label>
                         <input type="number" step="any" class="form-control" id="price">
                     </div>
                     <div class="col-md-6 form-group">
-                        <label>Launch Date</label>
+                        <label for="launchDate">Launch Date</label>
                         <input type="datetime-local" class="form-control" id="launchDate">
                     </div>
                     <div class="col-md-6 form-group">
@@ -70,13 +69,13 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label>Description</label>
+                    <label for="description">Description</label>
                     <textarea class="form-control" id="description" rows="3"></textarea>
                 </div>
                 <button type="button" id="save-project" class="btn btn-primary btn-block mt-3">Save Project</button>
             </form>
             <form th:action="@{/getProjectsJS}">
-                <button type="button" id="project-list" class="btn btn-primary btn-block mt-3">Project List</button>
+                <button type="submit" id="project-list" class="btn btn-primary btn-block mt-3">Project List</button>
             </form>
         </div>
     </div>
@@ -87,7 +86,7 @@
     const saveProjectButton = document.getElementById("save-project");
     const messageElement = document.getElementById("message");
 
-    saveProjectButton.addEventListener("click", (e) => {
+    saveProjectButton.addEventListener("click", () => {
 
         const projectId = parseInt(document.getElementById("id").value);
         const projectTitle = document.getElementById("title").value;
